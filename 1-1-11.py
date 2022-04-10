@@ -8,7 +8,9 @@ status, output = subprocess.getstatusoutput("findmnt /var/tmp")
 
 # Remediation
 if status != 0:
-    print("*************Run Partition Script**************")
+    os.system("echo 'none /var/tmp tmpfs rw,noexec,nosuid,nodev 0 0' >> /etc/fstab")
+    os.system("mount -o remount,noexec,nodev,nosuid /var/tmp")
+    print("*************Run Partition Script for Level 2**************")
 
 #########################################################
 # NODEV
